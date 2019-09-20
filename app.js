@@ -40,7 +40,11 @@ app.get('/', (req, res) => {
                 type: "pushed",
                 date: new Date(element.pushed_at).yyyymmdd()
             }
-            lists.push(item);           
+            lists.push(item);
+
+            lists.sort(function(a, b) {
+                return new Date(a.date).getTime() - new Date(b.date).getTime();
+            })
         });
        res.render('index', {lists: lists});
     });
@@ -51,7 +55,7 @@ app.listen(3000, () => {
 });
 
 Date.prototype.yyyymmdd = function() {
-    var mm = this.getMonth() + 1; // getMonth() is zero-based
+    var mm = this.getMonth() + 1;
     var dd = this.getDate();
   
     return [this.getFullYear(),
