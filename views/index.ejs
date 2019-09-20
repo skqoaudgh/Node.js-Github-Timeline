@@ -25,8 +25,8 @@
                         </div>
                         <div class="desc">
                             <% if(lists[i].type == 'created') { %>
-                                <%= lists[i].description ? lists[i].description : 'No Description'%>
-                                <%=lists[i].url%>
+                                <p><%= lists[i].description ? lists[i].description : 'No Description'%></p>
+                                <p><%=lists[i].url%></p>
                             <% } %>
                         </div>
                     </div>
@@ -42,8 +42,10 @@
                             </span>
                         </div>
                         <div class="desc">
-                            <%=lists[i].description%>
-                            <%=lists[i].url%>
+                            <% if(lists[i].type == 'created') { %>
+                                <p><%= lists[i].description ? lists[i].description : 'No Description'%></p>
+                                <p><%=lists[i].url%></p>
+                            <% } %>
                         </div>
                     </div>
                 </li>
