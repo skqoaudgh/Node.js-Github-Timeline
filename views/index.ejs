@@ -9,49 +9,59 @@
     <title>Github Timeline</title>
 </head>
 <body>
-    
-    <!-- The Timeline -->
-    <ul class="timeline">
-        <% for(let i=0; i<lists.length; i++) { %>
-            <% if(i%2 == 0)  { %>
-                <li>
-                    <div class="direction-r">
-                        <div class="flag-wrapper">
-                            <span class="flag"><%=lists[i].title%></span>
-                            <span class="time-wrapper">
-                                <span class="time"><%= lists[i].date %></span>
-                                <span class="time"><%= lists[i].type %></span>
-                            </span>
+    <div id="form-container">
+        <form method="POST" action="/">
+            <input type="text" autocomplete="off" placeholder="Enter Github ID" name="userId"></input>
+            <button>Search</button>
+        </form>
+    </div>
+    <% if(message) { %>
+        <h1><%= message %></h1>
+    <% } %>
+    <% if(lists.length > 0) { %>
+        <!-- The Timeline -->
+        <ul class="timeline">
+            <% for(let i=0; i<lists.length; i++) { %>
+                <% if(i%2 == 0)  { %>
+                    <li>
+                        <div class="direction-r">
+                            <div class="flag-wrapper">
+                                <span class="flag"><%=lists[i].title%></span>
+                                <span class="time-wrapper">
+                                    <span class="time"><%= lists[i].date %></span>
+                                    <span class="time"><%= lists[i].type %></span>
+                                </span>
+                            </div>
+                            <div class="desc">
+                                <% if(lists[i].type == 'created') { %>
+                                    <p><%= lists[i].description ? lists[i].description : 'No Description'%></p>
+                                    <p><%=lists[i].url%></p>
+                                <% } %>
+                            </div>
                         </div>
-                        <div class="desc">
-                            <% if(lists[i].type == 'created') { %>
-                                <p><%= lists[i].description ? lists[i].description : 'No Description'%></p>
-                                <p><%=lists[i].url%></p>
-                            <% } %>
+                    </li>
+                <% } else { %>
+                    <li>
+                        <div class="direction-l">
+                            <div class="flag-wrapper">
+                                <span class="flag"><%=lists[i].title%></span>
+                                <span class="time-wrapper">
+                                    <span class="time"><%= lists[i].type %></span>
+                                    <span class="time"><%= lists[i].date %></span>
+                                </span>
+                            </div>
+                            <div class="desc">
+                                <% if(lists[i].type == 'created') { %>
+                                    <p><%= lists[i].description ? lists[i].description : 'No Description'%></p>
+                                    <p><%=lists[i].url%></p>
+                                <% } %>
+                            </div>
                         </div>
-                    </div>
-                </li>
-            <% } else { %>
-                <li>
-                    <div class="direction-l">
-                        <div class="flag-wrapper">
-                            <span class="flag"><%=lists[i].title%></span>
-                            <span class="time-wrapper">
-                                <span class="time"><%= lists[i].type %></span>
-                                <span class="time"><%= lists[i].date %></span>
-                            </span>
-                        </div>
-                        <div class="desc">
-                            <% if(lists[i].type == 'created') { %>
-                                <p><%= lists[i].description ? lists[i].description : 'No Description'%></p>
-                                <p><%=lists[i].url%></p>
-                            <% } %>
-                        </div>
-                    </div>
-                </li>
+                    </li>
+                <% } %>
             <% } %>
-        <% } %>
-    </ul>
+        </ul>
+    <% } %>
 </body>
 <script type="text/javascript" src="/script.js"></script>
 </html>

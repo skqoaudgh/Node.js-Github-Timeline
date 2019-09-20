@@ -8,7 +8,31 @@ body {
     font-size: 112.5%;
     line-height: 1.6em;
 }
-  
+
+/* ================ Form ================ */
+#form-container {
+    text-align: center;
+}
+
+input[type="text"] {
+    outline: none;
+    padding: 5px;
+}
+
+button {
+    outline: none;
+    padding: 7px;
+    border: none;
+    background: rgb(255,80,80);
+    color: white;
+}
+
+h1 {
+    color: rgb(255,80,80);
+    text-align: center;
+    font-size: 16px;
+}
+
 /* ================ The Timeline ================ */
 .timeline {
     position: relative;
