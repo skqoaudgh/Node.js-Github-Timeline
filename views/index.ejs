@@ -5,10 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
     <title>Github Timeline</title>
 </head>
 <body>
-    Hello World
+    
+    <!-- The Timeline -->
+    <ul class="timeline">
+        <% for(let i=0; i<lists.length; i++) { %>
+            <% if(i%2 == 0)  { %>
+                <li>
+                    <div class="direction-r">
+                        <div class="flag-wrapper">
+                            <span class="flag"><%=lists[i].title%></span>
+                            <span class="time-wrapper">
+                                <span class="time"><%= lists[i].date %></span>
+                                <span class="time"><%= lists[i].type %></span>
+                            </span>
+                        </div>
+                        <div class="desc">
+                            <% if(lists[i].type == 'created') { %>
+                                <%= lists[i].description ? lists[i].description : 'No Description'%>
+                                <%=lists[i].url%>
+                            <% } %>
+                        </div>
+                    </div>
+                </li>
+            <% } else { %>
+                <li>
+                    <div class="direction-l">
+                        <div class="flag-wrapper">
+                            <span class="flag"><%=lists[i].title%></span>
+                            <span class="time-wrapper">
+                                <span class="time"><%= lists[i].type %></span>
+                                <span class="time"><%= lists[i].date %></span>
+                            </span>
+                        </div>
+                        <div class="desc">
+                            <%=lists[i].description%>
+                            <%=lists[i].url%>
+                        </div>
+                    </div>
+                </li>
+            <% } %>
+        <% } %>
+    </ul>
 </body>
 <script type="text/javascript" src="/script.js"></script>
 </html>
