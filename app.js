@@ -1,7 +1,5 @@
 const express = require('express');
 const request = require('request');
-const session = require('express-session');
-const flash = require('connect-flash');
 const app = express();
 
 app.use(express.static(__dirname + '/public'));
