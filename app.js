@@ -23,7 +23,12 @@ app.post('/', (req, res) => {
     }
     request(options, function(err, result, body) {
         if(body && 'message' in JSON.parse(body)) { // not found
-            res.render('index', {lists: [], message: 'Error: Cannot found the user.'});
+            if(JSON.parse(body).message == 'Not Found') {
+                res.render('index', {lists: [], message: 'Error: Cannot found the user.'});
+            }
+            else {
+                res.render('index', {lists: [], message: 'Error: Unknow error. try again!'});
+            }
         }
         else {
             let options = {
