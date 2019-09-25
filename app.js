@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 app.get('/', (req, res) => {
-    res.render('index', {lists: [], message: ''});
+    res.render('index', {lists: [], summary: {}, message: ''});
 });
 
 app.post('/', (req, res) => {
@@ -24,10 +24,10 @@ app.post('/', (req, res) => {
     request(options, function(err, result, body) {
         if(body && 'message' in JSON.parse(body)) { // not found
             if(JSON.parse(body).message == 'Not Found') {
-                res.render('index', {lists: [], message: 'Error: Cannot found the user.'});
+                res.render('index', {lists: [], summary: {}, message: 'Error: Cannot found the user.'});
             }
             else {
-                res.render('index', {lists: [], message: 'Error: Unknow error. try again!'});
+                res.render('index', {lists: [], summary: {}, message: 'Error: Unknow error. try again!'});
             }
         }
         else {
@@ -42,17 +42,22 @@ app.post('/', (req, res) => {
         
             request(options, function(err, result, body) {
                 let lists = [];
+                let summary = {};
                 JSON.parse(body).forEach(element => {
+                    const createDate = new Date(element.created_at);
                     let item = {
                         title: element.name,
                         language: element.language,
                         description: element.description,
                         url: element.html_url,
                         type: "created",
-                        date: new Date(element.created_at).yyyymmdd()
+                        date: createDate.yyyymmdd()
                     }
                     lists.push(item);
-        
+                    if(!summary[createDate.getFullYear()])
+                        summary[createDate.getFullYear()] = 0;
+                    summary[createDate.getFullYear()] ++;
+
                     item = {
                         title: element.name,
                         language: element.language,
@@ -73,7 +78,7 @@ app.post('/', (req, res) => {
                         return new Date(a.date).getTime() - new Date(b.date).getTime();
                     })
                 });
-               res.render('index', {lists: lists, message: `This is ${req.body.userId}\`s Timeline.`});
+                res.render('index', {lists: lists, summary: summary, message: `This is ${req.body.userId}\`s Timeline.`});
             });
         }
     });

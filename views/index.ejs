@@ -18,6 +18,12 @@
     <% if(message) { %>
         <h1><%= message %></h1>
     <% } %>
+    <% if(summary) { %>
+        Repos of the year
+        <% for(var prop in summary) { %>
+            <h1><%= prop %>: <%= summary[prop] %></h1>
+        <% } %>
+    <% } %>
     <% if(lists.length > 0) { %>
         <!-- The Timeline -->
         <ul class="timeline">
