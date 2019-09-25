@@ -26,7 +26,12 @@
                     <li>
                         <div class="direction-r">
                             <div class="flag-wrapper">
-                                <span class="flag"><%=lists[i].title%></span>
+                                <span class="flag">
+                                    <%=lists[i].title%>
+                                    <span class="language">
+                                        <%=lists[i].language%>
+                                    </span>
+                                </span>
                                 <span class="time-wrapper">
                                     <span class="time"><%= lists[i].date %></span>
                                     <span class="time">
@@ -49,7 +54,12 @@
                     <li>
                         <div class="direction-l">
                             <div class="flag-wrapper">
-                                <span class="flag"><%=lists[i].title%></span>
+                                <span class="flag">
+                                        <%=lists[i].title%>
+                                        <span class="language">
+                                            <%=lists[i].language%>
+                                        </span>
+                                    </span>
                                 <span class="time-wrapper">
                                     <span class="time">
                                         <% if(lists[i].type != 'created') { %>

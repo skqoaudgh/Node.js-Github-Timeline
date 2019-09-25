@@ -45,6 +45,7 @@ app.post('/', (req, res) => {
                 JSON.parse(body).forEach(element => {
                     let item = {
                         title: element.name,
+                        language: element.language,
                         description: element.description,
                         url: element.html_url,
                         type: "created",
@@ -54,6 +55,7 @@ app.post('/', (req, res) => {
         
                     item = {
                         title: element.name,
+                        language: element.language,
                         type: "updated",
                         date: new Date(element.updated_at).yyyymmdd()
                     }
@@ -61,6 +63,7 @@ app.post('/', (req, res) => {
         
                     item = {
                         title: element.name,
+                        language: element.language,
                         type: "pushed",
                         date: new Date(element.pushed_at).yyyymmdd()
                     }
