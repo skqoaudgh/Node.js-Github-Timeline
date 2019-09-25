@@ -19,10 +19,13 @@
         <h1><%= message %></h1>
     <% } %>
     <% if(summary) { %>
+        let total = 0;
         Repos of the year
         <% for(var prop in summary) { %>
+            total += summary[prop];
             <h1><%= prop %>: <%= summary[prop] %></h1>
         <% } %>
+        <h1>total: <%= total %></h1>
     <% } %>
     <% if(lists.length > 0) { %>
         <!-- The Timeline -->
