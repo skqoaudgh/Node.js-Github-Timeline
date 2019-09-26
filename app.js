@@ -54,9 +54,12 @@ app.post('/', (req, res) => {
                         date: createDate.yyyymmdd()
                     }
                     lists.push(item);
+                    if(!summary.total)
+                        summary.total = 0;
                     if(!summary[createDate.getFullYear()])
                         summary[createDate.getFullYear()] = 0;
                     summary[createDate.getFullYear()] ++;
+                    summary.total ++;
 
                     item = {
                         title: element.name,
