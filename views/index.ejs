@@ -17,8 +17,6 @@
     </div>
     <% if(message) { %>
         <h1><%= message %></h1>
-    <% } %>
-    <% if(summary == true) { %>
         <h2>Repos of the year</h2>
         <% for(var prop in summary) { %>
             <h1><%= prop %>: <%= summary[prop] %></h1>
